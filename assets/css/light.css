@@ -1,0 +1,9 @@
+:root {
+  --sidebar-width: 400px;
+  --background: #f9f9f9;
+  --second: #111111;
+  --third: #d5d5d5;
+  --link-cursor: url(../../../assets/cursors/Link.cur), pointer;
+  --default-cursor: url(../../../assets/cursors/Normal.cur), default;
+  --text-cursor: url(../../../assets/cursors/Text.cur), text;
+}

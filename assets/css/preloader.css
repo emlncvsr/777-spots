@@ -1,0 +1,106 @@
+#preloader {
+  overflow: hidden;
+  background: var(--background);
+  position: fixed;
+  z-index: 9;
+  color: var(--second);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  top: 0;
+}
+
+#preloader * {
+  user-select: none;
+  cursor: var(--default-cursor);
+}
+
+#preloader .jumper {
+  left: 1%;
+  right: 1%;
+  top: 2%;
+  bottom: 2%;
+  display: block;
+  position: absolute;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+}
+
+.preloadcount {
+  color: var(--main);
+  text-shadow: var(--text-shadow);
+}
+
+.preloader-waiting {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  line-height: 1.5em;
+  color: var(--second);
+}
+
+.preload-count-container {
+  display: flex;
+}
+
+.preload-count-container .colored-text {
+  color: var(--accent-color);
+  text-shadow: var(--text-shadow);
+  font-size: 8rem;
+  font-weight: bold;
+  opacity: 0;
+}
+
+.preload-count-container:before {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  background: linear-gradient(90deg, rgb(226, 0, 255) 0%, rgb(255, 89, 0) 100%);
+  width: 320px;
+  height: 170px;
+  border-radius: 100%;
+  opacity: 0.05;
+  filter: blur(55px);
+  z-index: -1;
+  animation: opacity 1s infinite ease-in-out;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0.05;
+  }
+
+  50% {
+    opacity: 0.075;
+  }
+}
+
+.preloader-swipe {
+  transform: translateY(-100vh);
+}
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.number {
+  transition: --num 1.25s ease-in-out !important;
+  counter-set: num var(--num);
+}
+
+.number:after {
+  content: counter(num);
+}
+
+.number {
+  --num: 0;
+}
