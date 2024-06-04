@@ -6,7 +6,7 @@ var map = L.map("map", {
   markerZoomAnimation: true,
   zoomAnimationThreshold: true,
   animate: true,
-  // renderer: L.canvas(),
+  renderer: L.canvas(),
 });
 
 // Fonction pour créer une info-bulle pour les marqueurs
