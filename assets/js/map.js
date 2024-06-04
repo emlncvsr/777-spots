@@ -89,16 +89,16 @@ fetch("https://script.google.com/macros/s/AKfycbzRqRi_s1oWswewaOgwCEiH6izX5y-3yC
     return response.json();
   })
   .then((data) => {
-    globalData = data; // Stocker les données globalement
+    globalData = data;
 
     // Ajouter des marqueurs à la Marker Cluster Group
     data.forEach((line, index) => {
       var latitude = parseFloat(line["Latitude"]);
       var longitude = parseFloat(line["Longitude"]);
-      var title = line["Title"]; // Récupérer le titre du marqueur
+      var title = line["Title"];
       if (!isNaN(latitude) && !isNaN(longitude)) {
         var iconUrl = "";
-        var type = line["Type"]; // Récupérer le type depuis la colonne "Type"
+        var type = line["Type"];
         if (type === "Photo Spot") {
           iconUrl = "assets/img/togo.png";
         } else if (type === "Hall of Fame") {
@@ -106,17 +106,17 @@ fetch("https://script.google.com/macros/s/AKfycbzRqRi_s1oWswewaOgwCEiH6izX5y-3yC
         }
         var customIcon = L.icon({
           iconUrl: iconUrl,
-          iconSize: [20, 20], // Taille de l'icône
-          iconAnchor: [10, 10], // Point d'ancrage de l'icône
+          iconSize: [20, 20],
+          iconAnchor: [10, 10],
         });
-        var marker = L.marker([latitude, longitude], { id: index, icon: customIcon }); // Utiliser l'icône personnalisée
-        marker.bindTooltip(title, { permanent: false, direction: "right", offset: [20, 0] }); // Ajouter l'infobulle avec le titre du marqueur
+        var marker = L.marker([latitude, longitude], { id: index, icon: customIcon });
+        marker.bindTooltip(title, { permanent: false, direction: "right", offset: [20, 0] });
         markers.addLayer(marker);
       }
     });
 
     map.addLayer(markers);
-    updateMarkerText(); // Initialiser l'affichage du texte
+    updateMarkerText();
   })
   .catch((error) => {
     console.error("Erreur lors de la récupération des données :", error);
@@ -129,7 +129,7 @@ map.on("zoomend", function () {
 function updateMarkerText() {
   if (map.getZoom() > 11) {
     markers.eachLayer(function (layer) {
-      var title = globalData[layer.options.id]["Title"]; // Récupérer le titre du marqueur
+      var title = globalData[layer.options.id]["Title"];
       if (!layer.getTooltip()) {
         layer.bindTooltip(title, { permanent: true, direction: "right", offset: [20, 0] });
       }
