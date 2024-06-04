@@ -21,7 +21,7 @@ Contactez-moi sur [Discord](https://discord.com/users/1204087298694582323) pour 
 Frontend: HTML, CSS, JavaScript (bibliothèque de cartographie)
 Base de Données: Google Sheets
 Librairies : jQuery, Google Fonts, IonIcons
-Cartographie: Leaflet.js, OpenStreetMap
+Cartographie: Leaflet.js, OpenStreetMap, LeafletMarkerCluster
 
 ## 📂 Structure des Données
 

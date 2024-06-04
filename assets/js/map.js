@@ -22,11 +22,6 @@ function createMarkerTooltip(marker, title) {
   }
 }
 
-// GeoJSON vide initial
-var pointJson = {
-  type: "FeatureCollection",
-};
-
 // Layers
 
 //osm layer
