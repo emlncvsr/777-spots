@@ -23,6 +23,9 @@ Base de Données: Google Sheets
 Librairies : jQuery, Google Fonts, IonIcons
 Cartographie: Leaflet.js, OpenStreetMap, LeafletMarkerCluster
 
+## 📝 Scripts Python Additionnels
+Vous pouvez trouver dans ce dossier des scripts Python pour générer des données par data scrapping.
+
 ## 📂 Structure des Données
 
 Les données sont organisées comme suit dans un fichier Google Sheets :
