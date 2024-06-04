@@ -5,9 +5,6 @@
 
 #sidebar {
   width: calc(var(--sidebar-width));
-  height: 70vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
   background: var(--background);
   position: absolute;
   z-index: -1;
@@ -16,8 +13,8 @@
   top: 80px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  border-radius: 25px 0 0 25px;
+  gap: 10px;
+  border-radius: 5px;
   align-items: start;
 }
 
@@ -108,12 +105,17 @@
   border: 1px solid var(--third);
 }
 
+.unavailable {
+  background: url(../img/unavailable.jpg), rgba(15, 15, 15, 0.15) !important;
+  background-size: 110% !important;
+}
+
 .sidebarimg {
   width: 100%;
   height: calc(var(--sidebar-width) * (9 / 16));
-  background: rgba(15, 15, 15, 0.15);
-  background-size: cover !important;
+  background-size: cover;
   background-position: center !important;
+  object-fit: cover;
 }
 
 .leaflet-popup-content-wrapper {
@@ -204,19 +206,45 @@
   padding: 0 !important;
 }
 
+#basicInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .googleMapsLink,
 .id {
   font-size: 14px;
   text-underline-offset: 2px;
   color: rgb(99, 99, 99) !important;
   word-wrap: break-word;
-  max-width: 200px;
+  max-width: 100%;
+}
+
+.id {
+  padding-right: 0 !important;
 }
 
 .inline {
   display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .inline:first-child::after {
   content: " - ";
+}
+
+.alert {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }

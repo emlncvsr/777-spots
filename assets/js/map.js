@@ -9,19 +9,6 @@ var map = L.map("map", {
   renderer: L.canvas(),
 });
 
-// Fonction pour créer une info-bulle pour les marqueurs
-function createMarkerTooltip(marker, title) {
-  if (map.getZoom() > 7) {
-    var tooltip = L.tooltip({
-      direction: "right",
-      permanent: true,
-      className: "marker-tooltip",
-    }).setContent(title);
-
-    marker.bindTooltip(tooltip).openTooltip();
-  }
-}
-
 // Layers
 
 //osm layer
@@ -55,17 +42,12 @@ googleStreets.addTo(map);
 //   attribution: "wms test",
 // });
 
-// GeoJSON
-
-var pointJson = {
-  type: "FeatureCollection",
-  features: [],
-};
-
 // Marker Cluster Group
 
 var markers = L.markerClusterGroup({
   disableClusteringAtZoom: 8,
+  spiderfyOnMaxZoom: false,
+  showCoverageOnHover: false,
   iconCreateFunction: function (cluster) {
     var count = cluster.getChildCount();
     var size = count < 100 ? "small" : count < 1000 ? "medium" : "large";
@@ -76,8 +58,9 @@ var markers = L.markerClusterGroup({
       iconSize: [30, 30],
     });
   },
-  showCoverageOnHover: false,
 });
+
+var tooltipsLayer = L.layerGroup();
 
 var globalData;
 
@@ -90,8 +73,6 @@ fetch("https://script.google.com/macros/s/AKfycbzRqRi_s1oWswewaOgwCEiH6izX5y-3yC
   })
   .then((data) => {
     globalData = data;
-
-    // Ajouter des marqueurs à la Marker Cluster Group
     data.forEach((line, index) => {
       var latitude = parseFloat(line["Latitude"]);
       var longitude = parseFloat(line["Longitude"]);
@@ -110,49 +91,71 @@ fetch("https://script.google.com/macros/s/AKfycbzRqRi_s1oWswewaOgwCEiH6izX5y-3yC
           iconAnchor: [10, 10],
         });
         var marker = L.marker([latitude, longitude], { id: index, icon: customIcon });
-        marker.bindTooltip(title, { permanent: false, direction: "right", offset: [20, 0] });
         markers.addLayer(marker);
       }
     });
 
     map.addLayer(markers);
-    updateMarkerText();
+    map.addLayer(tooltipsLayer);
+    updateTooltips(); // Active les tooltips par défaut
   })
   .catch((error) => {
     console.error("Erreur lors de la récupération des données :", error);
   });
 
-map.on("zoomend", function () {
-  updateMarkerText();
-});
+function updateTooltips() {
+  if (!globalData) return;
 
-function updateMarkerText() {
-  if (map.getZoom() > 11) {
+  if (map.hasLayer(tooltipsLayer)) {
     markers.eachLayer(function (layer) {
-      var title = globalData[layer.options.id]["Title"];
       if (!layer.getTooltip()) {
-        layer.bindTooltip(title, { permanent: true, direction: "right", offset: [20, 0] });
+        var title = globalData[layer.options.id]["Title"];
+        layer.bindTooltip(title, { permanent: false, direction: "right", offset: [20, 0] });
       }
-      layer.openTooltip();
     });
   } else {
     markers.eachLayer(function (layer) {
-      layer.unbindTooltip();
+      if (layer.getTooltip()) {
+        layer.unbindTooltip();
+      }
     });
   }
 }
 
+tooltipsLayer.on("add", updateTooltips);
+tooltipsLayer.on("remove", updateTooltips);
+
+// Controls
+var baseMaps = {
+  "Google Street": googleStreets,
+  Dark: dark,
+  "Google Satellite": googleSat,
+  // OSM: osm,
+};
+
+var overlayMaps = {
+  Markers: markers,
+  Tooltips: tooltipsLayer,
+  // wms: wms,
+};
+
+L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+
+map.on("moveend", function () {
+  markers.refreshClusters();
+});
+
 markers.on("click", function (event) {
   var layer = event.layer;
-  var id = layer.options.id; // Récupérer l'ID unique du marqueur
-  var properties = findPropertiesByIndex(id, globalData); // Trouver les propriétés associées à l'index
+  var id = layer.options.id;
+  var properties = findPropertiesByIndex(id, globalData);
   updateSidebar(properties);
   $("#sidebar").addClass("displayed");
   // $(".leaflet-control-zoom").addClass("swiped");
 });
 
 function findPropertiesByIndex(index, data) {
-  return data[index] ? data[index] : null;
+  return data && data[index] ? data[index] : null;
 }
 
 function updateSidebar(properties) {
@@ -165,29 +168,16 @@ function updateSidebar(properties) {
     $(".id").text("#" + (globalData.indexOf(properties) + 2));
     $(".latitude").text(properties["Latitude"]);
     $(".longitude").text(properties["Longitude"]);
+    if (!properties["Image"].includes("https://")) {
+      $(".sidebarimg").removeClass("cover").addClass("unavailable");
+    } else {
+      $(".sidebarimg").addClass("cover").removeClass("unavailable");
+    }
     $(".sidebarimg").css("background-image", "url(" + properties["Image"] + ")");
   } else {
     console.error("Propriétés non valides.");
   }
 }
-
-// Controls
-
-var baseMaps = {
-  // OSM: osm,
-  "Google Street": googleStreets,
-  Dark: dark,
-  "Google Satellite": googleSat,
-};
-
-var overlayMaps = {
-  Markers: markers,
-  // Points: pointData,
-  // Zones: polygonData,
-  // wms: wms,
-};
-
-L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
 
 // Events
 
@@ -199,8 +189,3 @@ L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
 //   document.getElementsByClassName("coordinate")[0].innerHTML = "lat: " + e.latlng.lat + "lng: " + e.latlng.lng;
 // console.log("lat: " + e.latlng.lat, "lng: " + e.latlng.lng);
 // });
-
-// Événement de carte pour mettre à jour les marqueurs visibles
-map.on("moveend", function () {
-  markers.refreshClusters();
-});

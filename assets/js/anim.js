@@ -22,3 +22,14 @@ $("#sidebar-close-btn").click(function () {
     // $(".leaflet-control-zoom").removeClass("swiped");
   }, 300);
 });
+
+$(document).ready(function () {
+  $(".googleMapsLink").on("click", function (event) {
+    if (event.detail === 1) {
+      var range = document.createRange();
+      range.selectNode(this);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  });
+});
