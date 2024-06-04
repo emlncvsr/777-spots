@@ -167,7 +167,7 @@ function updateSidebar(properties) {
     $(".note").text(properties["Note"]);
     $(".googleMapsLink").text(properties["Link"]);
     $(".prefecture").text(properties["Préfecture"]) + " Prefecture";
-    $(".id").text("Numéro de ligne : " + globalData.indexOf(properties));
+    $(".id").text("#" + (globalData.indexOf(properties) + 2));
     $(".latitude").text(properties["Latitude"]);
     $(".longitude").text(properties["Longitude"]);
     $(".sidebarimg").css("background-image", "url(" + properties["Image"] + ")");
