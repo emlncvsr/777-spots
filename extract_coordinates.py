@@ -102,6 +102,6 @@ def convert_urls_to_coordinates(input_csv, output_csv, api_key):
 if __name__ == "__main__":
     input_csv = 'urls.csv'
     output_csv = 'coordinates_with_names.csv'
-    api_key = 'AIzaSyAq7I04fePA_qwdPp9j_NvzCqCgDDPf0_0'
+    api_key = 'ENTERAPIKEYHERE'
     convert_urls_to_coordinates(input_csv, output_csv, api_key)
     print(f"Les coordonnées et les noms ont été extraits et sauvegardés dans {output_csv}.")

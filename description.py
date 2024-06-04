@@ -49,6 +49,6 @@ def add_descriptions_to_excel(input_excel, output_excel, api_key):
 if __name__ == "__main__":
     input_excel = 'excel.xlsx'
     output_excel = 'final.xlsx'
-    api_key = 'AIzaSyAq7I04fePA_qwdPp9j_NvzCqCgDDPf0_0'
+    api_key = 'ENTERAPIKEYHERE'
     add_descriptions_to_excel(input_excel, output_excel, api_key)
     print(f"Les descriptions ont été extraites et sauvegardées dans {output_excel}.")
