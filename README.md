@@ -1,45 +1,47 @@
-# 📸 Carte des Photo Spots au Japon 🇯🇵
+# 📸 Photo Spots Map of Japan 🇯🇵
 
-Ce projet vise à présenter une carte interactive des 777 meilleurs photo spots au Japon, couvrant l'ensemble du territoire avec des informations supplémentaires pour chaque lieu.
+This project aims to present an interactive map of the 777 best photo spots in Japan, covering the entire territory with additional information for each location.
 
-## 📌 Fonctionnalités
+## 📌 Features
 
-- **Carte Interactive :** Explorez facilement les différentes régions du Japon et découvrez les meilleurs spots pour la photographie.
-- **Informations Détaillées :** Accédez à des détails précis pour chaque spot, incluant les coordonnées GPS, un lien vers la photo recommandée, et le lien Google Maps du lieu.
-- **Menu Latéral :** Utilisez le menu pour obtenir des informations supplémentaires et naviguer entre les différents spots.
+- **Interactive Map:** Easily explore different regions of Japan and discover the best photography spots.
+- **Detailed Information:** Access precise details for each spot, including GPS coordinates, a link to the recommended photo, and the Google Maps link of the location.
+- **Sidebar Menu:** Use the menu to get additional information and navigate between different spots.
 
-## 🚀 Comment Contribuer
+## 🚀 How to Contribute
 
-1. **Forkez** ce repo.
-2. **Clônez** le repo forké localement sur votre machine.
-3. **Ajoutez** les fonctionnalités ou informations supplémentaires qui vous intéressent.
-4. **Envoyez** une demande d'extraction.
+1. **Fork** this repo.
+2. **Clone** the forked repo locally to your machine.
+3. **Add** the features or additional information that interest you.
+4. **Send** a pull request.
 
-Contactez-moi sur [Discord](https://discord.com/users/1204087298694582323) pour toute contribution à la base de données.
+Contact me on [Discord](https://discord.com/users/1204087298694582323) for any contributions to the database.
 
-## ⚙️ Technologies Utilisées
-Frontend: HTML, CSS, JavaScript (bibliothèque de cartographie)
-Base de Données: Google Sheets
-Librairies : jQuery, Google Fonts, IonIcons
-Cartographie: Leaflet.js, OpenStreetMap, LeafletMarkerCluster
+## ⚙️ Technologies Used
 
-## 📝 Scripts Python Additionnels
-Vous pouvez trouver dans ce dossier des scripts Python pour générer des données par data scrapping.
+Frontend: HTML, CSS, JavaScript (mapping library)  
+Database: Google Sheets  
+Libraries: jQuery, Google Fonts, IonIcons  
+Mapping: Leaflet.js, OpenStreetMap, LeafletMarkerCluster
 
-## 📂 Structure des Données
+## 📝 Additional Python Scripts
 
-Les données sont organisées comme suit dans un fichier Google Sheets :
+You can find Python scripts in this folder for data generation through data scraping.
 
-- **Préfecture**
+## 📂 Data Structure
+
+The data is organized as follows in a Google Sheets file:
+
+- **Prefecture**
 - **Latitude**
 - **Longitude**
-- **Ville**
-- **Nom du Spot**
+- **City**
+- **Spot Name**
 - **Description**
-- **Coordonnées GPS**
-- **Lien Photo**
-- **Lien Google Maps**
+- **GPS Coordinates**
+- **Photo Link**
+- **Google Maps Link**
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à signaler des problèmes, à proposer des fonctionnalités ou à envoyer des demandes d'extraction.
+Contributions are welcome! Feel free to report issues, propose features, or send pull requests.
