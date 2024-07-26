@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-16" />
-    <meta name="title" content="777 Spots" />
-    <meta name="description" content="777 Spots" />
-    <meta name="keywords" content="carte, map, photo, photo spots, Japon, Japan" />
-    <meta name="robots" content="index, follow" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
-    <meta name="language" content="French" />
-    <meta property="twitter:image" content="./assets/img/cover.jpg" />
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:image" content="./assets/img/cover.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>777 Spots</title>
-    <link rel="shortcut icon" href="./assets/img/favicon.svg" type="image/x-icon" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="./assets/css/light.css" id="darkmodestylesheet" />
-    <link rel="stylesheet" href="./assets/css/common.css" />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <link rel="stylesheet" href="./assets/css/preloader.css" />
+<head>
+  <meta charset="UTF-16" />
+  <meta name="title" content="777 Spots" />
+  <meta name="description" content="777 Spots" />
+  <meta name="keywords" content="carte, map, photo, photo spots, Japon, Japan" />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
+  <meta name="language" content="French" />
+  <meta property="twitter:image" content="./assets/img/cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="./assets/img/cover.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>777 Spots</title>
+  <link rel="shortcut icon" href="./assets/img/favicon.svg" type="image/x-icon" />
 
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script defer src="./assets/js/darkmode.js"></script>
-    <script defer src="./assets/js/preloader.js"></script>
-    <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script defer src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script defer src="./assets/js/map.js"></script>
-    <script defer src="./assets/js/anim.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./assets/css/light.css" id="darkmodestylesheet" />
+  <link rel="stylesheet" href="./assets/css/common.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <link rel="stylesheet" href="./assets/css/preloader.css" />
 
-    <!-- IonIcons -->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script defer src="./assets/js/darkmode.js"></script>
+  <script defer src="./assets/js/preloader.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script defer src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+  <script defer src="./assets/js/map.js"></script>
+  <script defer src="./assets/js/anim.js"></script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
-  </head>
+  <!-- IonIcons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-  <body>
-    <!-- PRELOADER  -->
-    <div id="preloader">
-      <p class="preloader-waiting">Chargement...</p>
-      <div class="preload-count-container">
-        <p class="number colored-text"></p>
-        <span class="colored-text">%</span>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- PRELOADER  -->
+  <div id="preloader">
+    <p class="preloader-waiting">Loading...</p>
+    <div class="preload-count-container">
+      <p class="number colored-text"></p>
+      <span class="colored-text">%</span>
+    </div>
+  </div>
+
+  <div id="app">
+    <div id="sidebar">
+      <div id="sidebar-close-btn"><ion-icon name="close-outline"></ion-icon></div>
+      <div class="sidebarimg"></div>
+      <div class="labelType"></div>
+      <div id="basicInfo">
+        <p class="title"></p>
+        <p class="note"></p>
+        <div class="inline">
+          <p class="id"></p>
+          <a class="googleMapsLink" target="_blank">Link</a>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <div id="address">
+        <ion-icon name="location-outline"></ion-icon>
+        <p class="prefecture"></p>
+      </div>
+      <div id="coords">
+        <ion-icon name="compass-outline"></ion-icon>
+        <div class="latitude"></div>
+        <div class="longitude"></div>
       </div>
     </div>
-
-    <div id="app">
-      <div id="sidebar">
-        <div id="sidebar-close-btn"><ion-icon name="close-outline"></ion-icon></div>
-        <div class="sidebarimg"></div>
-        <div class="labelType"></div>
-        <div id="basicInfo">
-          <p class="title"></p>
-          <p class="note"></p>
-          <div class="inline">
-            <p class="id"></p>
-            <a class="googleMapsLink" target="_blank">Link</a>
-          </div>
-        </div>
-        <div class="separator"></div>
-        <div id="address">
-          <ion-icon name="location-outline"></ion-icon>
-          <p class="prefecture"></p>
-        </div>
-        <div id="coords">
-          <ion-icon name="compass-outline"></ion-icon>
-          <div class="latitude"></div>
-          <div class="longitude"></div>
-        </div>
-      </div>
-      <div id="map">
-        <div class="leaflet-control coordinate"></div>
-      </div>
-      <!-- <a href="https://twitter.com/" target="_blank" id="credits">@[créer twitter]</a> -->
+    <div id="map">
+      <div class="leaflet-control coordinate"></div>
     </div>
-  </body>
+    <!-- <a href="https://twitter.com/" target="_blank" id="credits">@[créer twitter]</a> -->
+  </div>
+</body>
+
 </html>
