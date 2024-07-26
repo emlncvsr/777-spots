@@ -116,6 +116,7 @@
   background-size: cover;
   background-position: center !important;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .leaflet-popup-content-wrapper {
